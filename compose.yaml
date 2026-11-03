@@ -1,0 +1,8 @@
+services:
+  stockpile:
+    build: .
+    ports:
+      - "5116:5116"
+    environment:
+      PORT: "5116"
+      STOCKPILE_RESEED: "1"
