@@ -9,7 +9,8 @@ export function formatNaira(kobo: number): string {
 export function nairaToKobo(input: string): number | null {
   const cleaned = input.replace(/[₦,\s]/g, '')
   if (!/^\d+(\.\d{1,2})?$/.test(cleaned)) return null
-  return Math.trunc(Number(cleaned) * 100)
+  const [nairaPart, koboPart = ''] = cleaned.split('.')
+  return Number(nairaPart) * 100 + Number(koboPart.padEnd(2, '0'))
 }
 
 /** Kobo to the plain number shown in an editable price box. */

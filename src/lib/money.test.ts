@@ -11,6 +11,8 @@ describe('money', () => {
     expect(nairaToKobo('1500')).toBe(150000)
     expect(nairaToKobo('₦12,500')).toBe(1250000)
     expect(nairaToKobo('250.50')).toBe(25050)
+    expect(nairaToKobo('12.10')).toBe(1210)
+    expect(nairaToKobo('4.35')).toBe(435)
     expect(nairaToKobo('abc')).toBeNull()
     expect(nairaToKobo('12.345')).toBeNull()
   })
