@@ -49,12 +49,12 @@ describe('dailyReport', () => {
     saleIds.forEach((id, index) => setTime.run(timestamps[index], id))
 
     const report = dailyReport(db, '2025-03-10')
-    expect(report.sales).toBe(3)
+    expect(report.salesCount).toBe(3)
     expect(report.totalKobo).toBe(90000)
     expect(report.itemsSold).toBe(3)
 
     const nextReport = dailyReport(db, '2025-03-11')
-    expect(nextReport.sales).toBe(1)
+    expect(nextReport.salesCount).toBe(1)
     expect(nextReport.totalKobo).toBe(30000)
     expect(nextReport.itemsSold).toBe(1)
   })
