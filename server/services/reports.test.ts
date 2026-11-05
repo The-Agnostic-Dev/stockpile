@@ -18,7 +18,7 @@ describe('dailyReport', () => {
     const staffId = Number(staffResult.lastInsertRowid)
     staff = { id: staffId, name: 'Test Owner', role: 'owner' }
 
-    const productResult = db.prepare('INSERT INTO products (sku, name, category, price_kobo, reorder_level, stock_on_hand) VALUES (?, ?, ?, ?, ?, ?)').run('TEST-1', 'Test Product', 'Medicines', 30000, 0, 0)
+    const productResult = db.prepare('INSERT INTO products (sku, name, category, price_kobo, reorder_level, stock_on_hand, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)').run('TEST-1', 'Test Product', 'Medicines', 30000, 0, 0, '2025-03-01T09:00:00.000Z')
     productId = Number(productResult.lastInsertRowid)
 
     receiveBatch(db, productId, {
