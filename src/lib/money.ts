@@ -16,3 +16,8 @@ export function nairaToKobo(input: string): number | null {
 export function koboToInput(kobo: number): string {
   return kobo % 100 === 0 ? String(kobo / 100) : (kobo / 100).toFixed(2)
 }
+
+/** Sum of each line's unit price × quantity, in kobo. */
+export function cartTotalKobo(lines: { priceKobo: number; qty: number }[]): number {
+  return lines.reduce((total, line) => total + line.priceKobo * line.qty, 0)
+}
