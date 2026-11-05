@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatNaira, koboToInput, nairaToKobo } from './money'
+import { cartTotal, formatNaira, koboToInput, nairaToKobo } from './money'
 
 describe('money', () => {
   it('formats kobo as naira', () => {
@@ -18,5 +18,24 @@ describe('money', () => {
   it('shows prices in edit boxes without needless decimals', () => {
     expect(koboToInput(150000)).toBe('1500')
     expect(koboToInput(25050)).toBe('250.50')
+  })
+})
+
+describe('cartTotal', () => {
+  it('multiplies quantity by unit price for a line', () => {
+    expect(cartTotal([{ priceKobo: 320000, quantity: 3 }])).toBe(960000)
+  })
+
+  it('returns unit price for a single quantity', () => {
+    expect(cartTotal([{ priceKobo: 320000, quantity: 1 }])).toBe(320000)
+  })
+
+  it('sums quantity × unit price across several lines', () => {
+    expect(
+      cartTotal([
+        { priceKobo: 320000, quantity: 2 },
+        { priceKobo: 30000, quantity: 1 },
+      ]),
+    ).toBe(670000)
   })
 })

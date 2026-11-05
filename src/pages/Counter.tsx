@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router'
 import { api } from '../api/client'
 import { PAYMENT_LABELS, type PaymentMethod, type Sale } from '../api/types'
 import { Notice } from '../components/Notice'
-import { formatNaira } from '../lib/money'
+import { cartTotal, formatNaira } from '../lib/money'
 import { matchesQuery } from '../lib/search'
 import { useProducts, type CatalogueItem } from '../state/ProductsContext'
 
@@ -31,7 +31,7 @@ export function Counter() {
     [products, query],
   )
 
-  const total = useMemo(() => cart.reduce((sum, line) => sum + line.priceKobo, 0), [cart])
+  const total = useMemo(() => cartTotal(cart), [cart])
 
   function inCart(productId: number) {
     return cart.find((l) => l.productId === productId)?.qty ?? 0
